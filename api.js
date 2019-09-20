@@ -6,20 +6,20 @@ module.exports = function (req, res, next) {
     query = req.query.q || '',
     useIntegers = req.query.integers || true,
     showRows = req.query.rows || true,
-    showColumns = req.query.columns || true,
     url = 'https://spreadsheets.google.com/feeds/list/' + id + '/' + sheet + '/public/values?alt=json';
 
   request(url, function (error, response, body) {
     if (!error && response.statusCode === 200) {
       var data = JSON.parse(response.body);
       var responseObj = {};
-      var rows = [];
-      var columns = {};
+      var categories = {};
+      var currCat = '';
       if (data && data.feed && data.feed.entry) {
         for (var i = 0; i < data.feed.entry.length; i++) {
           var entry = data.feed.entry[i];
           var keys = Object.keys(entry);
           var newRow = {};
+          var newCategory = [];
           var queried = false;
           for (var j = 0; j < keys.length; j++) {
             var gsxCheck = keys[j].indexOf('gsx$');
@@ -28,33 +28,39 @@ module.exports = function (req, res, next) {
               var name = key.substring(4);
               var content = entry[key];
               var value = content.$t;
-              if (value.toLowerCase().indexOf(query.toLowerCase()) > -1) {
-                queried = true;
-              }
               if (useIntegers === true && !isNaN(value)) {
                 value = Number(value);
               }
-              newRow[name] = value;
-              if (queried === true) {
-                if (!columns.hasOwnProperty(name)) {
-                  columns[name] = [];
-                  columns[name].push(value);
+              if (name == 'category'){
+                console.log('Current category is ' +value);
+                if (!(value in categories)){
+                  categories[value] = newCategory;
+                }
+                currCat = value;
+              }else{
+                console.log('Adding ' +name+ 'element');
+                if(name == 'sources'){
+                    newRow[name] = [value];
                 } else {
-                  columns[name].push(value);
+                    newRow[name] = value;
                 }
               }
             }
           }
-          if (queried === true) {
-            rows.push(newRow);
-          }
+          categories[currCat].push(newRow);
         }
-        if (showColumns === true) {
-          responseObj['columns'] = columns;
+
+        responseContent = [];
+        for (var category in categories){
+          responseContent.push(
+                {
+                  'category':category,
+                  'videos':categories[category]
+                });
         }
-        if (showRows === true) {
-          responseObj['rows'] = rows;
-        }
+
+        responseObj['chariotvideos'] = responseContent;
+
         return res.status(200).json(responseObj);
       } else {
         return res.status(response.statusCode).json(error);
