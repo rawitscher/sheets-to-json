@@ -2,7 +2,7 @@
   "name": "gsheets2json",
   "version": "1.0.0",
   "description": "Google Spreadsheet to JSON converter",
-  "main": "app.js",
+  "main": "index.js",
   "author": "Lindsay Rawitscher",
   "dependencies": {
     "body-parser": "^1.x.x",
