@@ -29,6 +29,9 @@ app.use(bodyParser.json());
 
 // get api
 app.get('/api', api);
+app.get('/',function(req,res) {
+  res.sendFile(path.join(__dirname+'/index.html'));
+});
 
 
 // error handler
