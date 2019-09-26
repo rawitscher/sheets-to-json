@@ -6,6 +6,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 
 var app = express();
+var server = require('http').createServer(app);
 
 var port = process.env.PORT || 5000;
 
@@ -16,6 +17,9 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
   next();
 });
+
+// run static middleware 
+app.use(express.static('public' + '/'));
 
 // body parser middleware
 app.use(bodyParser.urlencoded({ extended: true }));

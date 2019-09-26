@@ -22,14 +22,11 @@
 		<!-- MENU -->
 		<nav class="navbar navbar-expand-sm navbar-light">
 				<div class="container">
-					<a class="navbar-brand" href="index.html"><i class='uil uil-external-link-alt'></i> Chariot</a>
+					<a class="navbar-brand" href="https://chariot.stanford.edu" target="_blank"><i class='uil uil-external-link-alt'></i> Chariot</a>
 						<div class="collapse navbar-collapse" id="navbarNav">
 								<ul class="navbar-nav mx-auto">
 										<li class="nav-item">
 												<a href="#about" class="nav-link"><span data-hover="About">About</span></a>
-										</li>
-										<li class="nav-item">
-												<a href="#media" class="nav-link"><span data-hover="Media">Media</span></a>
 										</li>
 										<li class="nav-item">
 												<a href="#resources" class="nav-link"><span data-hover="Resources">Resources</span></a>
@@ -121,65 +118,159 @@
 				</div>
 		</section>
 
-		<!-- MEDIA -->
-		<section class="media full-screen d-lg-flex justify-content-center align-items-center" id="media">
-			<div class="container">
-				<div>
-						<img src="images/play.jpg" alt="app screenshot" class="small-img about-image">
-
-							<p class="mr-2">
-								If you haven't already, download the app from the Google Play store on your Android TV device. You can view the app <a href="http://play.google.com/store/apps/details?id=com.example.android.chariotMedia">here</a>.
-							</p>
-				</div>
-			</div>
-		</section>
-
 		<!-- RESOURCES -->
 		<section class="resources full-screen d-lg-flex justify-content-center align-items-center" id="resources">
+
 			<div class="container">
-        <div class="row">
+            <div class="row">
 
-          <div class="col-lg-6 col-12">
-                	<h3>Click <a href="https://young-sierra-63981.herokuapp.com/api?id=1Rf4dDcr5eRm9f8epLKxeKOHswgMWRXOzU1Idcdg9YlI&sheet=3">here</a> to view the raw JSON data</h3>
+                <div class="col-lg-6 col-12">
+                  <h2 class="mb-4">App Resources</h2>
+                    <div class="timeline">
+                    	 <div class="timeline-wrapper">
+                            <div class="timeline-yr">
+                                <span><i class='uil uil-large uil-film'></i></span>
+                            </div>
+                            <div class="timeline-info">
+                                <h3><span>Media List</span><small><a href="https://docs.google.com/spreadsheets/d/1Rf4dDcr5eRm9f8epLKxeKOHswgMWRXOzU1Idcdg9YlI/edit#gid=0" target="_blank">link</a></small></h3>
+                                  <p>A list of all media included in the app. This list can be edited. All three links (sources, card, background) must lead to active, publicly linked files or the content will not display in the app.</p>
+                            </div>
+                        </div>
 
-									<h3>Click <a href="https://docs.google.com/spreadsheets/d/1Rf4dDcr5eRm9f8epLKxeKOHswgMWRXOzU1Idcdg9YlI/edit#gid=0">here</a> to view the google sheet of all included media</h3>
+                    	<div class="timeline-wrapper">
+                            <div class="timeline-yr">
+                                <span><i class='uil uil-large uil-game-structure'></i></span>
+                            </div>
+                            <div class="timeline-info">
+                                <h3><span>Google Play App</span><small><a href="http://play.google.com/store/apps/details?id=com.example.android.chariotMedia" target="_blank">link</a></small></h3>
+                                <p>If you haven't already, download the app from the Google Play store on your Android TV device. You can view the app in the store here.</p>
+                            </div>
+                        </div>
 
-									<h3>Click <a href="https://console.cloud.google.com/storage/browser/chariot-media-background-image-files">here</a> to view all movie (.mp4) files</h3>
+                        <div class="timeline-wrapper">
+                             <div class="timeline-yr">
+                                  <span><i class='uil uil-large uil-file-info-alt'></i></span>
+                             </div>
+                             <div class="timeline-info">
+                                  <h3><span>JSON Data</span><small><a href="https://young-sierra-63981.herokuapp.com/api?id=1Rf4dDcr5eRm9f8epLKxeKOHswgMWRXOzU1Idcdg9YlI&sheet=3" target="_blank">link</a></small></h3>
+                                  <p>This leads to the API endpoint. The app is built using node.js and extracts data from a Google sheet's very nested original JSON. The final object contains media sorted into an array of key value pairs that correspond to categories and video lists.</p>
+                             </div>
+                        </div>
 
-									<h3>Click <a href="https://console.cloud.google.com/storage/browser/chariot-media-movie-files">here</a> to view all card (.jpg) images</h3>
+                    </div>
+                </div>
 
-									<h3>Click <a href="https://console.cloud.google.com/storage/browser/chariot-media-background-image-files">here</a> to view all background (.jpg) images</h3>
-          </div>
+                <div class="col-lg-6 col-12">
+                  <h2 class="mb-4 mobile-mt-2">Content Storage</h2>
+
+										<div class="timeline">
+
+                    	<div class="timeline-wrapper">
+                            <div class="timeline-yr">
+                                <span><i class='uil uil-large uil-tv-retro'></i></span>
+                            </div>
+                            <div class="timeline-info">
+                                <h3><span>Movie/TV Files</span><small><a href="https://console.cloud.google.com/storage/browser/chariot-media-movie-files" target="_blank">link</a></small></h3>
+                                <p>This links to a Google Cloud Storage bucket containing all movie files provided for the app. All titles are released under a creative commons license.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-wrapper">
+                             <div class="timeline-yr">
+                                  <span><i class='uil uil-large uil-image-search'></i></span>
+                             </div>
+                             <div class="timeline-info">
+                                  <h3><span>Card Images</span><small><a href="https://console.cloud.google.com/storage/browser/chariot-media-card-image-files" target="_blank">link</a></small></h3>
+                                  <p>This links to a Google Cloud Storage bucket containing all card image files provided for the app. All titles are released under a creative commons license.</p>
+                             </div>
+                        </div>
+
+                        <div class="timeline-wrapper">
+                            <div class="timeline-yr">
+                                <span><i class='uil uil-large uil-image-check'></i></span>
+                            </div>
+                            <div class="timeline-info">
+                                <h3><span>Background Images</span><small><a href="https://console.cloud.google.com/storage/browser/chariot-media-background-image-files" target="_blank">link</a></small></h3>
+                                  <p>This links to a Google Cloud Storage bucket containing all background image files provided for the app. All titles are released under a creative commons license.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                </div>
+                
+            </div>
         </div>
-      </div>
 
 		</section>
 
 		<!-- CODE -->
 		<section class="code full-screen d-lg-flex justify-content-center align-items-center" id="code">
+
+			 <div class="container">
+						<div class="row">
+
+								<div class=" d-flex align-items-center">
+										<div class="code-text converter-code-text">
+											<h2 class="mb-4">Code Resources</h2>
+
+												<p>The following are snippets from the Google Sheet to JSON converter. The full repo can be found 
+													<a href="https://github.com/rawitscher/sheets-to-json" target="_blank">here</a>.
+
+													<script src="https://gist.github.com/rawitscher/fe991cf2b0249870ef43fa5d0a62bf4b.js"></script>
+												</p>
+					
+										</div>
+								</div>
+
+								<div class=" d-flex align-items-center">
+										<div class="code-text app-code-text">
+
+												<p>Below is the ReadMe for the Android TV media app. The full repo can be found 
+													<a href="https://github.com/rawitscher/chariot_media" target="_blank">here</a>.
+
+													<script src="https://gist.github.com/rawitscher/2689d7bc5babebb0f0947ded16eac65a.js"></script>
+												</p>
+					
+										</div>
+								</div>
+						</div>
+				</div>
+
 		</section>
 
 		<!-- CONTACT -->
 		<section class="contact full-screen d-lg-flex justify-content-center align-items-center" id="contact">
 			<div class="container">
         <div class="row">
+          
 
-        	<form action="contact.php" method="post">
-						First Name: <input type="text" name="first_name">
-						<br>
-						Last Name: <input type="text" name="last_name">
-						<br>
-						Email: <input type="text" name="email">
-						<br>
-						Message:
-						<br>
-						<textarea rows="5" name="message" cols="30"></textarea>
-						<br>
-						<input type="submit" name="submit" value="Submit">
-					</form>
+            <div class="contact-form">
+              <h2 class="mb-4">Questions? Comments?</h2>
+
+              <form action= "mailto:lindsayrawitscher@gmail.com?subject=chariot form submission" enctype="text/plain" method="POST">
+                <div class="row">
+                  <div class="col-lg-6 col-12">
+                    <input type="text" class="form-control" name="name" placeholder="Your Name" id="name">
+                  </div>
+
+                  <div class="col-lg-6 col-12">
+                    <input type="email" class="form-control" name="email" placeholder="Email" id="email">
+                  </div>
+
+                  <div class="col-12">
+                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="Message"></textarea>
+                  </div>
+
+                  <div class="ml-lg-auto col-lg-5 col-12">
+                    <input type="submit" class="form-control submit-btn" value="Send">
+                  </div>
+                </div>
+              </form>
+            </div>
+     
 
         </div>
-
       </div>
 		</section>
 
