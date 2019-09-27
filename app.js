@@ -19,7 +19,7 @@ app.use(function(req, res, next) {
 });
 
 // run static middleware 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/static'));
 
 // body parser middleware
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -34,7 +34,7 @@ app.use(bodyParser.json());
 // get api
 app.get('/api', api);
 app.get('/',function(req,res) {
-  res.sendFile(path.join('GSX2JSON/public/index.html'));
+  res.sendFile(path.join(__dirname + '/index.html'));
 });
 
 
