@@ -34,7 +34,7 @@ app.use(bodyParser.json());
 // get api
 app.get('/api', api);
 app.get('/',function(req,res) {
-  res.sendFile(path.join('/public/index.html'));
+  res.sendFile(path.join('public/index.html'));
 });
 
 
