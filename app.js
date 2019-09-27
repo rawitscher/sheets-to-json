@@ -19,7 +19,7 @@ app.use(function(req, res, next) {
 });
 
 // run static middleware 
-app.use(express.static('public' + '/'));
+app.use(express.static(__dirname + '/public'));
 
 // body parser middleware
 app.use(bodyParser.urlencoded({ extended: true }));
