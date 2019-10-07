@@ -4,11 +4,31 @@ var api = require('./api');
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
+var basicAuth = require('express-basic-auth');
 
 var app = express();
 var server = require('http').createServer(app);
 
 var port = process.env.PORT || 5000;
+
+// force user login before page access is granted
+app.use(basicAuth({
+    authorizer: myAuthorizer,
+    challenge: true,
+    realm: "the site",
+    unauthorizedResponse: function(req) {
+      return req.auth
+          ? ('Credentials ' + req.auth.user + ':' + req.auth.password + ' rejected')
+          : 'No credentials provided'
+        }
+}))
+
+function myAuthorizer(username, password) {
+    const userMatches = basicAuth.safeCompare(username, process.env.USER_NAME)
+    const passwordMatches = basicAuth.safeCompare(password, process.env.USER_PASSW)
+ 
+    return userMatches & passwordMatches
+}
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -25,12 +45,6 @@ app.use(express.static(__dirname + '/static'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// build link to sheet
-//var sheetID = '1Rf4dDcr5eRm9f8epLKxeKOHswgMWRXOzU1Idcdg9YlI'
-//var sheetNumber = '3'
-//var host = 'localhost:5000'
-//var fullURL = 'http://'+host+'/api?id='+sheetID+'&sheet='+sheetNumber
-
 // get api
 app.get('/api', api);
 app.get('/',function(req,res) {
@@ -46,5 +60,4 @@ app.use(function(err, req, res, next) {
 
 app.listen(port, function() {
   console.log('GSX2JSON listening on port ' + port);
-  //console.log('View resulting JSON at ' + fullURL)
 });

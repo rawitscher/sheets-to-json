@@ -2,19 +2,23 @@
   "name": "gsheets2json",
   "version": "1.0.0",
   "description": "Google Spreadsheet to JSON converter",
-  "main": "index.js",
-  "author": "Lindsay Rawitscher",
-  "dependencies": {
-    "body-parser": "^1.x.x",
-    "express": "^4.17.1",
-    "request": "^2.69.0"
+  "author": {
+    "name": "Lindsay Rawitscher"
   },
-  "license": "ISC",
+  "main": "index.js",
   "scripts": {
     "start": "node app.js",
     "build": "if [ $BUILD_ASSETS ]; then npm run build-assets; fi",
     "build-assets": "bower install && grunt build"
   },
+  "dependencies": {
+    "body-parser": "^1.x.x",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "express-basic-auth": "^1.2.0",
+    "request": "^2.69.0"
+  },
+  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "https://github.com/rawitscher/sheets-to-json.git"
