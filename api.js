@@ -1,12 +1,10 @@
 var request = require('request');
 
 module.exports = function (req, res, next) {
-  var id = req.query.id,
-    sheet = req.query.sheet || 1,
-    query = req.query.q || '',
-    useIntegers = req.query.integers || true,
-    showRows = req.query.rows || true,
-    url = 'https://spreadsheets.google.com/feeds/list/' + id + '/' + sheet + '/public/values?alt=json';
+  var id = req.query.id;
+  var sheet = req.query.sheet || 1;
+  var useIntegers = req.query.integers || true;
+  var url = 'https://spreadsheets.google.com/feeds/list/' + id + '/' + sheet + '/public/values?alt=json';
 
   request(url, function (error, response, body) {
     if (!error && response.statusCode === 200) {
@@ -20,7 +18,6 @@ module.exports = function (req, res, next) {
           var keys = Object.keys(entry);
           var newRow = {};
           var newCategory = [];
-          var queried = false;
           for (var j = 0; j < keys.length; j++) {
             var gsxCheck = keys[j].indexOf('gsx$');
             if (gsxCheck > -1) {
@@ -31,14 +28,14 @@ module.exports = function (req, res, next) {
               if (useIntegers === true && !isNaN(value)) {
                 value = Number(value);
               }
-              if (name == 'category'){
-                console.log('Current category is ' +value);
+              if (name == 'category') {
+                console.log('Adding video object to category: '+value);
                 if (!(value in categories)){
                   categories[value] = newCategory;
                 }
                 currCat = value;
-              }else{
-                console.log('Adding ' +name+ 'element');
+              } else {
+                console.log('Adding '+name+' element');
                 if(name == 'sources'){
                     newRow[name] = [value];
                 } else {
@@ -54,8 +51,8 @@ module.exports = function (req, res, next) {
         for (var category in categories){
           responseContent.push(
                 {
-                  'category':category,
-                  'videos':categories[category]
+                  'category' : category,
+                  'videos' : categories[category]
                 });
         }
 
